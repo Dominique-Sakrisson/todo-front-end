@@ -5,11 +5,11 @@ export default class Header extends Component {
     render() {
         return (
             <div>
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/login'>Log in</NavLink>
-                <NavLink to='signup'> Sign Up</NavLink>
-                <NavLink to='/todos'>Todos</NavLink>
-                <NavLink to='/todos/CurrentUser'>My Todos</NavLink>
+                <NavLink className='links' to='/'>Home</NavLink>
+                <NavLink className='links' to='/login'>Log in</NavLink>
+                <NavLink className='links' to='signup'> Sign Up</NavLink>
+                <NavLink className='links' to='/todos'>Todos</NavLink>
+                <NavLink className='links' to='/todos/CurrentUser'>My Todos</NavLink>
             </div>
         )
     }

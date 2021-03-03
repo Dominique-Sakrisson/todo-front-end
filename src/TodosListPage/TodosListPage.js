@@ -19,9 +19,13 @@ export default class TodosListPage extends Component {
         e.preventDefault();
 
         await addTodo(this.state.todo, this.props.user.token);
-        
+        console.log(this.state.todo);
         await this.fetchTodos();
-        this.setState({todo: ''});
+
+        console.log(this.state.todos);
+
+
+        // this.setState({todo: ''});
    
     }
 
@@ -39,7 +43,7 @@ export default class TodosListPage extends Component {
 
         <div>
             <form onSubmit={this.handleSubmit}>
-                <input value={this.state.todo.todo} onChange={this.handleTodoChange}/>
+                <input value={this.state.todo} onChange={this.handleTodoChange}/>
                 <button>Add new todo</button>
             </form>
             {!this.state.todos.length && <p>Great job staying on top of things!</p>}
