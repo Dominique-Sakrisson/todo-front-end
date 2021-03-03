@@ -42,3 +42,13 @@ body{
   display: grid;
   justify-content: center;
 }
+.todo{
+  border: 2px solid black;
+}
+.todo:hover{
+  cursor:pointer;
+}
+.completed{
+  background-color: rgba(15,200,10, .8);
+  
+}

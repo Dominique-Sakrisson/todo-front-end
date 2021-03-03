@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
 import Header from './components/Header.js';
+import PrivateRoute from './components/PrivateRoute.js';
 import Home from './Home/Home.js';
 import TodosListPage from './TodosListPage/TodosListPage';
 import UserTodosListPage from './TodosListPage/UserTodosListPage.js'
@@ -13,14 +14,16 @@ import { getUserFromLocalStorage, putUserIntoLocalStorage,} from './Local-storag
 
 export default class App extends Component {
   state = {
-    user: getUserFromLocalStorage(),
-
+    user: getUserFromLocalStorage()
   }
 
   handleUserChange= (user) =>{
     this.setState({ user });
-
     putUserIntoLocalStorage(user);
+  }
+
+  handleLogout = () => {
+    this.handleUserChange();
   }
   render(){
     return (
@@ -31,25 +34,35 @@ export default class App extends Component {
             <Route
               path='/'
               exact
-              render={(routerProps) => <Home {...routerProps} />}
+              render={(routerProps) => 
+              <Home 
+              {...routerProps} />}
   
             />
             <Route
               path='/todos'
               exact
-              render={(routerProps) => <TodosListPage user={this.state.user}{...routerProps} />}
+              render={(routerProps) => 
+                <TodosListPage 
+                  user={this.state.user}
+                    {...routerProps} />}
   
             />
-            <Route
+            <PrivateRoute
               path='/todos/currentUser'
               exact
-              render={(routerProps) => <UserTodosListPage user={this.state.user}{...routerProps} />}
+              token={this.state.user && this.state.user.token}
+              render={(routerProps) => 
+              <UserTodosListPage 
+                user={this.state.user}
+                  {...routerProps} />}
   
             />
             <Route
               path='/login'
               exact
-              render={(routerProps) => <LoginPage 
+              render={(routerProps) => 
+              <LoginPage 
                 handleUserChange={this.handleUserChange}
                  {...routerProps} />}
   
@@ -57,7 +70,8 @@ export default class App extends Component {
             <Route
               path='/signup'
               exact
-              render={(routerProps) => <SignUpPage 
+              render={(routerProps) => 
+              <SignUpPage 
                 handleUserChange={this.handleUserChange}
                 {...routerProps} />}
   

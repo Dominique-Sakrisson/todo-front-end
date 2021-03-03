@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { addTodo } from '../api-utils';
-import { getTodos, completeTodo } from '../api-utils.js'
+import { getTodos, addTodo, completeTodo } from '../api-utils.js'
 
 export default class TodosListPage extends Component {
     state = {
@@ -36,19 +35,28 @@ export default class TodosListPage extends Component {
     }
 
     render() {
-       
         return (
-            <>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <input value={this.state.todo.todo} onChange={this.handleTodoChange}/>
-                        <button>Add new todo</button>
-                    </form>
-                    {!this.state.todos.length && <p>Great job staying on top of things!</p>}
-                    {this.state.todos.map(todo => 
-                        <p>{todo.todo} : {todo.completed? 'Done!' : 'still working on it'} </p> )}
-                </div>
-            </>
+
+        <div>
+            <form onSubmit={this.handleSubmit}>
+                <input value={this.state.todo.todo} onChange={this.handleTodoChange}/>
+                <button>Add new todo</button>
+            </form>
+            {!this.state.todos.length && <p>Great job staying on top of things!</p>}
+            {this.state.todos.map(todo => 
+                <p 
+                key={`${todo.todo}-${todo.id}`} 
+                onClick={() => this.handleComplete(todo.id)} 
+                className={`
+                    todo ${todo.completed 
+                        ? `completed` 
+                        : ''}`
+                } >
+                {todo.todo}
+                    </p> )
+            } 
+        </div>
+           
         )
     }
 }
