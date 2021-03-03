@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { addTodo } from '../api-utils';
-import { getTodos, completeTodo } from '../api-utils.js'
+import { getCurrentUserTodos, completeTodo } from '../api-utils.js'
 
 export default class TodosListPage extends Component {
     state = {
@@ -13,7 +13,7 @@ export default class TodosListPage extends Component {
     }
 
     fetchTodos = async () => {
-        const todos = await getTodos(this.props.user.token);
+        const todos = await getCurrentUserTodos(this.props.user.token);
         this.setState({todos});
     }
     handleSubmit = async e => {

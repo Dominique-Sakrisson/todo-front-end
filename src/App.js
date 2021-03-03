@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
 import Header from './components/Header.js';
 import Home from './Home/Home.js';
 import TodosListPage from './TodosListPage/TodosListPage';
+import UserTodosListPage from './TodosListPage/UserTodosListPage.js'
 import LoginPage from './AuthPages/LoginPage.js';
 import SignUpPage from './AuthPages/SignUpPage.js';
 import { getUserFromLocalStorage, putUserIntoLocalStorage,} from './Local-storage-utils.js';
@@ -37,6 +38,12 @@ export default class App extends Component {
               path='/todos'
               exact
               render={(routerProps) => <TodosListPage user={this.state.user}{...routerProps} />}
+  
+            />
+            <Route
+              path='/todos/currentUser'
+              exact
+              render={(routerProps) => <UserTodosListPage user={this.state.user}{...routerProps} />}
   
             />
             <Route

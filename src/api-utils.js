@@ -26,6 +26,13 @@ export async function getTodos(token){
     return response.body;
 }
 
+export async function getCurrentUserTodos(token){
+    const response = await request
+    .get(`${URL}/api/todos/currentUser`)
+    .set(`Authorization`, token)
+    
+    return response.body;
+}
 export async function addTodo(todo, token){
     const response = await request
     .post(`${URL}/api/todos`)
@@ -37,7 +44,8 @@ export async function addTodo(todo, token){
 export async function completeTodo(todoId, token){
     const response = await request
     .put(`${URL}/api/todos/${todoId}`)
-    .set(`Authorization`, token)
+    .set('Authorization', token)
 
-    return response.body;
+return response.body;
 }
+
