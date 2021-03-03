@@ -41,4 +41,3 @@ export async function completeTodo(todoId, token){
 
     return response.body;
 }
-
